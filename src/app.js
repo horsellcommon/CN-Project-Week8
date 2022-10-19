@@ -4,6 +4,7 @@ const { sequelize } = require("./db/connection.js");
 const app = async (yargsObject) => {
   try {
     await sequelize.sync();
+    console.log("! Connection !");
     if (yargsObject.create) {
     } else if (yargsObject.read) {
     } else if (yargsObject.update) {

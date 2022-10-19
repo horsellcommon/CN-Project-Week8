@@ -12,6 +12,8 @@ exports.readMovies = async (filterObject) => {
   try {
     if (filterObject) {
       return await Movie.findOne({ where: filterObject });
+    } else {
+      return await Movie.findAll();
     }
   } catch (error) {
     console.log(error);

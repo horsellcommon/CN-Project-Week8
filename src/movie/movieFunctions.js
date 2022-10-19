@@ -22,7 +22,7 @@ exports.readMovies = async (filterObject) => {
 
 exports.updateMovie = async (filter, updated) => {
   try {
-    await Movie.update(filter, { where: updated });
+    await Movie.update(updated, { where: filter });
   } catch (error) {
     console.log(error);
   }

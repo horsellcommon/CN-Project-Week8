@@ -5,18 +5,14 @@ const {
   readMovies,
   updateMovie,
   deleteMovie,
-} = require("./movie/movieFunctions.js");
-const {
   createMiscInfo,
   readMisc,
   updateMisc,
   deleteMisc,
-} = require("./movie/miscFunctions.js");
-const {
-  createUser,
+  createUser, // User purposefully doesn't have an update function
   readUser,
   deleteUser,
-} = require("./movie/userFunctions.js"); // User purposefully doesn't have an update function
+} = require("./movie/functions.js");
 
 const app = async (yargsObject) => {
   try {

@@ -79,6 +79,10 @@ const app = async (yargsObject) => {
         { [yargsObject.key]: yargsObject.value },
         { [yargsObject.updateKey]: yargsObject.updateValue }
       );
+      await updateMisc(
+        { [yargsObject.key]: yargsObject.value },
+        { [yargsObject.updateKey]: yargsObject.updateValue }
+      );
       let output = {};
       let table = await readMovies();
       for (let movie of table) {
@@ -95,6 +99,7 @@ const app = async (yargsObject) => {
       }
     } else if (yargsObject.delete) {
       await deleteMovie({ title: yargsObject.title });
+      await deleteMisc({ director: yargsObject.director });
       let output = {};
       let table = await readMovies();
       for (let movie of table) {

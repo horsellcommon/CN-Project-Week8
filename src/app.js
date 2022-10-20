@@ -12,6 +12,11 @@ const {
   updateMisc,
   deleteMisc,
 } = require("./movie/miscFunctions.js");
+const {
+  createUser,
+  readUser,
+  deleteUser,
+} = require("./movie/userFunctions.js"); // User purposefully doesn't have an update function
 
 const app = async (yargsObject) => {
   try {
@@ -27,6 +32,9 @@ const app = async (yargsObject) => {
         producer: yargsObject.producer,
         released: yargsObject.released,
       });
+      await createUser({
+        user: yargsObject.user,
+      });
       console.log("Movie added to database.");
       let output = {};
       let table = await readMovies();
@@ -41,6 +49,10 @@ const app = async (yargsObject) => {
         output.producer = misc.producer;
         output.released = misc.released;
         console.log(output);
+      }
+      let table3 = await readUser();
+      for (let user of table3) {
+        output.user = user.user;
       }
     } else if (yargsObject.read) {
       let output = {};
@@ -59,6 +71,10 @@ const app = async (yargsObject) => {
         output.released = misc.released;
         console.log(output);
       }
+      let table3 = await readUser();
+      for (let user of table3) {
+        output.user = user.user;
+      }
     } else if (yargsObject.readAll) {
       let output = {};
       let table = await readMovies();
@@ -73,6 +89,10 @@ const app = async (yargsObject) => {
         output.producer = misc.producer;
         output.released = misc.released;
         console.log(output);
+      }
+      let table3 = await readUser();
+      for (let user of table3) {
+        output.user = user.user;
       }
     } else if (yargsObject.update) {
       await updateMovie(
@@ -97,9 +117,14 @@ const app = async (yargsObject) => {
         output.released = misc.released;
         console.log(output);
       }
+      let table3 = await readUser();
+      for (let user of table3) {
+        output.user = user.user;
+      }
     } else if (yargsObject.delete) {
       await deleteMovie({ title: yargsObject.title });
       await deleteMisc({ director: yargsObject.director });
+      await deleteUser({ user: yargsObject.user });
       let output = {};
       let table = await readMovies();
       for (let movie of table) {
@@ -113,6 +138,10 @@ const app = async (yargsObject) => {
         output.producer = misc.producer;
         output.released = misc.released;
         console.log(output);
+      }
+      let table3 = await readUser();
+      for (let user of table3) {
+        output.user = user.user;
       }
     } else {
       console.log("Incorrect command.");

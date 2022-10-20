@@ -37,7 +37,7 @@ const app = async (yargsObject) => {
       await createUser({
         user: yargsObject.user,
       });
-      console.log("Movie added to database.");
+      console.log("Added to database.");
       let output = {};
       let table = await readMovies();
       for (let movie of table) {
@@ -50,11 +50,11 @@ const app = async (yargsObject) => {
         output.director = misc.director;
         output.producer = misc.producer;
         output.released = misc.released;
-        console.log(output);
       }
       let table3 = await readUser();
       for (let user of table3) {
         output.user = user.user;
+        console.log(output);
       }
     } else if (yargsObject.read) {
       let output = {};
@@ -71,11 +71,11 @@ const app = async (yargsObject) => {
         output.director = misc.director;
         output.producer = misc.producer;
         output.released = misc.released;
-        console.log(output);
       }
       let table3 = await readUser();
       for (let user of table3) {
         output.user = user.user;
+        console.log(output);
       }
     } else if (yargsObject.readAll) {
       let output = {};
@@ -90,11 +90,11 @@ const app = async (yargsObject) => {
         output.director = misc.director;
         output.producer = misc.producer;
         output.released = misc.released;
-        console.log(output);
       }
       let table3 = await readUser();
       for (let user of table3) {
         output.user = user.user;
+        console.log(output);
       }
     } else if (yargsObject.update) {
       await updateMovie(
@@ -117,11 +117,11 @@ const app = async (yargsObject) => {
         output.director = misc.director;
         output.producer = misc.producer;
         output.released = misc.released;
-        console.log(output);
       }
       let table3 = await readUser();
       for (let user of table3) {
         output.user = user.user;
+        console.log(output);
       }
     } else if (yargsObject.delete) {
       await deleteMovie({ title: yargsObject.title });
@@ -139,11 +139,11 @@ const app = async (yargsObject) => {
         output.director = misc.director;
         output.producer = misc.producer;
         output.released = misc.released;
-        console.log(output);
       }
       let table3 = await readUser();
       for (let user of table3) {
         output.user = user.user;
+        console.log(output);
       }
     } else {
       console.log("Incorrect command.");

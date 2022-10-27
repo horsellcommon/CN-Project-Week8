@@ -5,6 +5,7 @@ const {
   readMovies,
   updateMovie,
   deleteMovie,
+  Movie,
 } = require("./movie/movie.js");
 
 const {
@@ -12,12 +13,14 @@ const {
   readMisc,
   updateMisc,
   deleteMisc,
+  Misc,
 } = require("./movie/miscellaneous.js");
 
 const {
   createUser, // User purposefully doesn't have an update function
   readUser,
   deleteUser,
+  User,
 } = require("./movie/user.js");
 
 const app = async (yargsObject) => {
@@ -38,46 +41,12 @@ const app = async (yargsObject) => {
         user: yargsObject.user,
       });
       console.log("Added to database.");
-      let output = {};
-      let table = await readMovies();
-      for (let movie of table) {
-        output.id = movie.id;
-        output.title = movie.title;
-        output.actor = movie.actor;
-      }
-      let table2 = await readMisc();
-      for (let misc of table2) {
-        output.director = misc.director;
-        output.producer = misc.producer;
-        output.released = misc.released;
-      }
-      let table3 = await readUser();
-      for (let user of table3) {
-        output.user = user.user;
-        console.log(output);
-      }
     } else if (yargsObject.read) {
-      let output = {};
-      let table = await readMovies({
+      await readMovies({
         [yargsObject.key]: yargsObject.value,
       });
-      for (let movie of table) {
-        output.id = movie.id;
-        output.title = movie.title;
-        output.actor = movie.actor;
-      }
-      let table2 = await readMisc();
-      for (let misc of table2) {
-        output.director = misc.director;
-        output.producer = misc.producer;
-        output.released = misc.released;
-      }
-      let table3 = await readUser();
-      for (let user of table3) {
-        output.user = user.user;
-        console.log(output);
-      }
     } else if (yargsObject.readAll) {
+      await readMovies();
       let output = {};
       let table = await readMovies();
       for (let movie of table) {

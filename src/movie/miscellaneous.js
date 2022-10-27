@@ -1,11 +1,10 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../db/connection.js");
 
-const Misc = sequelize.define("Miscellaneous", {
+const Misc = sequelize.define("Misc", {
   director: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
   producer: {
     type: DataTypes.STRING,
